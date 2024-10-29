@@ -2,12 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EtudiantController;
-
+use App\Http\Controllers\ClientController;
 
 /*
-|--------------------------------------------------------------------------
+|----------------------------------------------------------------------
 | Web Routes
-|--------------------------------------------------------------------------
+|----------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
@@ -15,17 +15,26 @@ use App\Http\Controllers\EtudiantController;
 |
 */
 
+// Home route
 Route::get('/', function () {
     return view('welcome');
 });
 
+// Contact route
 Route::get('/contact', function () {
-    return 'fatma elfilali ';
+    return 'Fatma Elfilali';
 });
 
-Route::get('/etudiant', function () {
-    $nom="Elfilali";
-    $prenom="Fatma";
-    return view('etudiant',compact("nom","prenom"));
+// Group routes that require authentication
+Route::group(['middleware' => ['auth']], function () {
+    // Home route for authenticated users
+    Route::get('/home', [ClientController::class, "index"])->name('home');
+    
+    // Etudiant routes
+    Route::get('/etudiant', [EtudiantController::class, 'index'])->name('etudiant');
+    Route::get('/etudiant/create', [EtudiantController::class, 'create'])->name('etudiant.create');
+    Route::post('/etudiant', [EtudiantController::class, 'store'])->name('etudiant.store');
+    Route::get('/etudiant/{etudiant}/edit', [EtudiantController::class, 'edit'])->name('etudiant.edit');
+    Route::put('/etudiant/{etudiant}', [EtudiantController::class, 'update'])->name('etudiant.update');
+    Route::delete('/etudiant/{etudiant}', [EtudiantController::class, 'delete'])->name('etudiant.delete');
 });
-Route::get('/etudiant', [EtudiantController::class, 'index']);

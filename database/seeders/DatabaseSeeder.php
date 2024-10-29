@@ -7,17 +7,16 @@ use Illuminate\Database\Seeder;
 use App\Models\Etudiant;
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     *
-     * @return void
-     */
     public function run()
     {
-      
-         $this->call(ClassesTableSeeder::class); // Seed classes first
-        Etudiant::factory(30)->create(); // Then create students
-        
-    }
+        $this->call(RolesTableSeeder::class); // Seed roles first
+        $this->call(ClasseTableSeeder::class); // Seed classes next
     
-}
+        if (Etudiant::count() === 0) {
+            Etudiant::factory(30)->create(); // Create students only if none exist
+            echo "Students seeded successfully.\n";
+        } else {
+            echo "Students already exist in the database. Skipping seeding.\n";
+        }
+    }
+}    

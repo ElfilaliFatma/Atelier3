@@ -11,21 +11,15 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class EtudiantFactory extends Factory
 {
-   
     protected $model = Etudiant::class;
-    /**
-     * Define the model's default state.
-     
-     * @return array<string, mixed>
-     
-     */
+
     public function definition()
     {
         return [
-           'nom'=> $this->faker->lastname(),
-           'prenom'=> $this->faker->firstname(),
-           'classes_id' => rand(1, 6),
-           
+            'nom' => $this->faker->lastName,
+            'prenom' => $this->faker->firstName,
+            'classe_id' => \App\Models\Classe::factory(), 
         ];
     }
 }
+

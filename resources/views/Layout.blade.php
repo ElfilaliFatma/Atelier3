@@ -1,12 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> 
-    <title>Document</title>
+    <title>Listes des Etudiants</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css" rel="stylesheet">
+    @vite('resources/css/app.css')
+
 </head>
 <body>
+    <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="w-24 h-24">
+            <a href=""><img src=""></a>
+        </div>
+        <ul class="flex flex-col md:flex-row items-center mb-3 md:mb-0">
+            @auth
+            <li class="md:mr-5 py-2 md:py-0"><a href="" class="hover:text-green-400">Les missions</a></li>
+            <li class="md:mr-5 py-2 md:py-0"><a href="" class="hover:text-green-400">Mes conversations</a></li>
+            <li class="md:mr-5 py-2 md:py-0"><a href="" class="hover:text-green-400">Mon compte</a></li>
+            <li class="md:mr-5 py-2 md:py-0"><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="hover:text-green-400">Se déconnecter</a></li>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+            @else
+            <li class="md:mr-5 py-2 md:py-0"><a href="" class="hover:text-green-400">Se connecter</a></li>
+            <li class="md:mr-5 py-2 md:py-0"><a href="" class="hover:text-green-400">S'enregistrer</a></li>
+            @endauth
+        </ul>
+    </div>
     <div class="container">
         @yield('content')
     </div>

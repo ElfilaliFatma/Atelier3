@@ -9,8 +9,10 @@ use Illuminate\Database\Eloquent\Model;
 class Etudiant extends Model
 {
     use HasFactory; 
-   
-    public function classes()
+
+    protected $fillable = ['nom', 'prenom', 'classe_id'];
+
+    public function classe() // Change from classes to classe
     {
         return $this->belongsTo(Classe::class);
     }

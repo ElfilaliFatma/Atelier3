@@ -2,16 +2,11 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB; 
-class ClassesTableSeeder extends Seeder
+use Illuminate\Support\Facades\DB;
+
+class ClasseTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
         DB::table('classes')->insert([
@@ -22,5 +17,13 @@ class ClassesTableSeeder extends Seeder
             ['libelle' => '2éme'],
             ['libelle' => '1ére'],
         ]);
+        
+        // Debugging output
+        if (DB::table('classes')->count() > 0) {
+            echo "Classes seeded successfully.\n";
+        } else {
+            echo "Failed to seed classes.\n";
+        }
     }
 }
+
