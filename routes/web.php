@@ -15,7 +15,7 @@ use App\Http\Controllers\ClientController;
 |
 */
 
-// Home route
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -25,12 +25,12 @@ Route::get('/contact', function () {
     return 'Fatma Elfilali';
 });
 
-// Group routes that require authentication
+
 Route::group(['middleware' => ['auth']], function () {
-    // Home route for authenticated users
+ 
     Route::get('/home', [ClientController::class, "index"])->name('home');
     
-    // Etudiant routes
+
     Route::get('/etudiant', [EtudiantController::class, 'index'])->name('etudiant');
     Route::get('/etudiant/create', [EtudiantController::class, 'create'])->name('etudiant.create');
     Route::post('/etudiant', [EtudiantController::class, 'store'])->name('etudiant.store');

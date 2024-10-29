@@ -18,7 +18,7 @@ class EtudiantFactory extends Factory
         return [
             'nom' => $this->faker->lastName,
             'prenom' => $this->faker->firstName,
-            'classe_id' => \App\Models\Classe::factory(), 
+            'classe_id' => rand(1,6), 
         ];
     }
 }

@@ -18,7 +18,7 @@ class ClasseTableSeeder extends Seeder
             ['libelle' => '1ére'],
         ]);
         
-        // Debugging output
+    
         if (DB::table('classes')->count() > 0) {
             echo "Classes seeded successfully.\n";
         } else {

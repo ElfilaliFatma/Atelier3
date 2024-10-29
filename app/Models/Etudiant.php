@@ -12,7 +12,7 @@ class Etudiant extends Model
 
     protected $fillable = ['nom', 'prenom', 'classe_id'];
 
-    public function classe() // Change from classes to classe
+    public function classe()
     {
         return $this->belongsTo(Classe::class);
     }

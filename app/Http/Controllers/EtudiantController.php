@@ -32,7 +32,6 @@ class EtudiantController extends Controller
            'classe_id' => 'required',
        ]);
    
-       // Create a new Etudiant and save it to the database
        Etudiant::create([
            'nom' => $request->nom,
            'prenom' => $request->prenom,
@@ -70,8 +69,8 @@ public function delete(Etudiant $etudiant){
 
 public function edit(Etudiant $etudiant)
 {
-    $classes = Classe::all(); // Get all classes
-    return view('edit', compact('etudiant', 'classes')); // Pass the student and classes to the view
+    $classes = Classe::all(); 
+    return view('edit', compact('etudiant', 'classes')); 
 }
 
 }
